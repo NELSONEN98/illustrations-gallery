@@ -1,0 +1,114 @@
+.gallery {
+  padding-block: clamp(4rem, 12vh, 9rem);
+  border-top: 1px solid var(--line);
+}
+
+/* ----------------------------- Encabezado ----------------------------- */
+.gallery__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: clamp(2rem, 5vh, 3.5rem);
+}
+
+.gallery__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  letter-spacing: -0.01em;
+}
+
+.gallery__count {
+  font-size: 0.8125rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+/* ----------------------------- Masonry ----------------------------- */
+.gallery__grid {
+  column-count: 3;
+  column-gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+@media (max-width: 960px) {
+  .gallery__grid {
+    column-count: 2;
+  }
+}
+@media (max-width: 560px) {
+  .gallery__grid {
+    column-count: 1;
+  }
+}
+
+/* ----------------- Bloque especial: 11 + 12 + video ----------------- */
+.feature {
+  display: grid;
+  /* izquierda más angosta → imágenes más chicas, bloque menos alto */
+  grid-template-columns: 2fr 3fr;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  align-items: stretch;
+  /* separación clara respecto del masonry de arriba antes del bloque negro */
+  margin-top: clamp(2.5rem, 7vh, 5.5rem);
+  margin-bottom: clamp(1rem, 2.5vw, 2rem);
+  /* fondo negro: enmarca y hace de letterbox del video */
+  background: #000;
+  padding: clamp(1rem, 2.5vw, 2rem);
+}
+
+/* columna izquierda: las dos imágenes apiladas */
+.feature__imgs {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+/* dentro del feature las cards no llevan el margin del masonry */
+.feature__imgs .card {
+  margin-bottom: 0;
+}
+
+/* columna derecha: el video estira a la altura de la izquierda.
+   va en position:absolute para NO imponer él la altura de la fila. */
+.feature__video {
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+
+.feature__video video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* contain = el video se ve COMPLETO, sin recorte (negro a los lados) */
+  object-fit: contain;
+}
+
+/* en pantallas chicas: una sola columna, el video con proporción propia */
+@media (max-width: 700px) {
+  .feature {
+    grid-template-columns: 1fr;
+  }
+  .feature__video {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+/* ----------------- Línea de imágenes: 16, 18, 17 ----------------- */
+.line {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
+  margin-bottom: clamp(1rem, 2.5vw, 2rem);
+}
+
+/* fila: sin el margin del masonry y con formato uniforme */
+.line .card {
+  margin-bottom: 0;
+}
+.line .card__btn {
+  aspect-ratio: 1 / 1;
+}
+
