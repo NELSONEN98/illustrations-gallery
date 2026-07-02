@@ -15,10 +15,19 @@ export default function App() {
   // `mounted` controla cuándo quitamos el loader del DOM (tras el fade-out)
   const [mounted, setMounted] = useState(true);
 
+  // Tope duro: revelamos el sitio como MÁXIMO tras MAX_WAIT, aunque las
+  // imágenes no hayan terminado. El hero NO necesita la galería (usa gifs) y
+  // las cards cargan con lazy-load al scrollear → jamás bloqueamos 30s.
+  useEffect(() => {
+    const MAX_WAIT = 1800;
+    const cap = setTimeout(() => setMounted(false), MAX_WAIT);
+    return () => clearTimeout(cap);
+  }, []);
+
   useEffect(() => {
     if (!done) return;
-    // dejamos que llegue a 100 y respire un toque antes de desmontar
-    const t = setTimeout(() => setMounted(false), 800);
+    // si terminó antes del tope, respira un toque y desmonta
+    const t = setTimeout(() => setMounted(false), 500);
     return () => clearTimeout(t);
   }, [done]);
 

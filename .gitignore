@@ -16,6 +16,9 @@ dist-ssr
 .claude
 local_cache
 
+# Originales de alta resolución (backup local, no se sirven)
+originals
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
