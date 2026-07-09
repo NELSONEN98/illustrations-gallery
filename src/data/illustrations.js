@@ -66,5 +66,5 @@ export const site = {
   tagline: "Ilustraciones en blanco y negro",
   intro:
     "Una colección de trabajo en tinta, línea y forma. Movés el mouse — la portada responde.",
-  contact: "nelson.bedoya1107@gmail.com",
+  contact: "npalopa@gmail.com",
 };
